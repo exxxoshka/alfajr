@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Благотворительный фонд "Аль-Фаджр"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== ОБЩИЕ СТИЛИ ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9fbf8;
+            color: #2c3e2f;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1e3a2a;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #8FBC8F;
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+        .section-title.centered::after {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: #2E4F3B;
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid #2E4F3B;
+            box-shadow: 0 4px 12px rgba(46,79,59,0.25);
+        }
+        .btn-primary:hover {
+            background: transparent;
+            color: #2E4F3B;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(46,79,59,0.15);
+        }
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: #2E4F3B;
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid #2E4F3B;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background: #2E4F3B;
+            color: #fff;
+        }
+        .btn-small { padding: 10px 25px; font-size: 0.9rem; }
+
+        /* ===== ШАПКА ===== */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #eef5ee 100%);
+            padding-top: 30px;
+            padding-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(143,188,143,0.3);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at 30% 30%, rgba(143,188,143,0.08) 0%, transparent 70%);
+            background-image: repeating-linear-gradient(45deg, rgba(143,188,143,0.1) 0px, rgba(143,188,143,0.1) 2px, transparent 2px, transparent 8px);
+            transform: rotate(15deg);
+            z-index: 0;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '✦';
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 180px;
+            color: rgba(143,188,143,0.06);
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0 30px 0;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3a2a;
+            letter-spacing: 2px;
+        }
+        .logo span { color: #8FBC8F; font-style: italic; }
+        .logo small {
+            font-size: 0.7rem;
+            font-weight: 300;
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            letter-spacing: 3px;
+            color: #5a7a63;
+            margin-top: -5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e2f;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #8FBC8F;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: #1e3a2a; }
+        .nav-links a:hover::after { width: 100%; }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            line-height: 1.2;
+            color: #1a2e21;
+            margin-bottom: 20px;
+        }
+        .hero-text h1 em { font-style: italic; color: #2E4F3B; font-weight: 400; }
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #4a5f4e;
+            margin-bottom: 30px;
+            max-width: 90%;
+        }
+        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+
+        .hero-image {
+            background: rgba(143,188,143,0.15);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+        }
+        .islamic-symbol { font-size: 5rem; color: #2E4F3B; opacity: 0.8; margin-bottom: 10px; }
+        .hero-image p { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #2E4F3B; }
+        .hero-image .quote { font-style: italic; font-weight: 300; font-size: 0.95rem; color: #5a7a63; margin-top: 10px; }
+
+        /* ===== МИССИЯ ===== */
+        .mission { padding: 80px 0; background: #ffffff; }
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 20px;
+        }
+        .mission-text p { margin-bottom: 20px; color: #3d5242; }
+        .mission-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            background: #f4f8f4;
+            padding: 15px 25px;
+            border-radius: 12px;
+            border-left: 4px solid #8FBC8F;
+        }
+        .stat-item strong {
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            color: #1e3a2a;
+            display: block;
+        }
+        .stat-item span { font-size: 0.9rem; color: #5a7a63; }
+        .support-message {
+            margin-top: 30px;
+            padding: 20px 25px;
+            background: #f4f8f4;
+            border-radius: 16px;
+            border-left: 6px solid #8FBC8F;
+            font-size: 1.05rem;
+            color: #1e3a2a;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .support-message strong { font-weight: 500; color: #2E4F3B; }
+
+        /* ===== НАПРАВЛЕНИЯ (обновлённые карточки) ===== */
+        .directions { padding: 80px 0; background: #f6faf6; }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .card {
+            background: #ffffff;
+            padding: 30px 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(143,188,143,0.2);
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(46,79,59,0.08);
+            border-color: #8FBC8F;
+        }
+        .card-icon { font-size: 2.8rem; margin-bottom: 15px; display: block; color: #2E4F3B; }
+        .card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #1e3a2a; margin-bottom: 10px; }
+        .card p { color: #5a6f5e; font-size: 0.95rem; }
+
+        /* ===== ПРОГРАММЫ С ТАБАМИ (работают через JS) ===== */
+        .programs { padding: 80px 0; background: #ffffff; }
+        .programs .section-title { display: block; text-align: center; }
+
+        .tabs {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .tab-btn {
+            padding: 12px 32px;
+            background: #eef5ee;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #2c3e2f;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        .tab-btn:hover { background: #dce8dc; }
+        .tab-btn.active {
+            background: #2E4F3B;
+            color: #fff;
+            border-color: #2E4F3B;
+        }
+
+        .tab-content {
+            display: none;
+            margin-top: 30px;
+            padding: 30px 25px;
+            background: #f9fbf8;
+            border-radius: 24px;
+            border: 1px solid rgba(143,188,143,0.15);
+        }
+        .tab-content.active { display: block; }
+
+        .tab-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #1e3a2a;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .price-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            text-align: center;
+            border: 1px solid #e8f0e8;
+        }
+        .price-item strong { display: block; font-size: 1rem; color: #1e3a2a; }
+        .price-item span { color: #2E4F3B; font-weight: 700; font-size: 1.2rem; }
+        .price-item small { color: #5a7a63; font-size: 0.85rem; }
+
+        .bank-details {
+            background: #eef5ee;
+            padding: 20px 25px;
+            border-radius: 16px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .bank-details p { margin: 8px 0; font-size: 1rem; }
+        .bank-details .card-number { font-weight: 700; font-size: 1.2rem; letter-spacing: 1px; color: #1e3a2a; }
+        .bank-details .label { color: #5a7a63; font-weight: 500; }
+
+        .warning {
+            color: #b33;
+            font-weight: 500;
+            background: #fde8e8;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .contacts-line {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.05rem;
+            color: #2c3e2f;
+        }
+        .contacts-line a { color: #2E4F3B; font-weight: 500; text-decoration: none; }
+        .contacts-line a:hover { text-decoration: underline; }
+
+        /* ===== НОВОСТИ ===== */
+        .news { padding: 80px 0; background: #f6faf6; }
+        .news .section-title { display: block; text-align: center; }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .news-card {
+            background: #ffffff;
+            padding: 25px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(143,188,143,0.2);
+            transition: all 0.3s ease;
+        }
+        .news-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(46,79,59,0.06); }
+        .news-card .date { font-size: 0.8rem; color: #8FBC8F; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+        .news-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #1e3a2a; margin: 8px 0 10px; }
+        .news-card p { color: #5a6f5e; font-size: 0.95rem; margin-bottom: 15px; }
+        .news-card .read-more {
+            color: #2E4F3B;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid #8FBC8F;
+            padding-bottom: 2px;
+            transition: 0.3s;
+        }
+        .news-card .read-more:hover { color: #1e3a2a; border-color: #1e3a2a; }
+        .news-channel-link { text-align: center; margin-top: 30px; }
+        .news-channel-link a {
+            color: #2E4F3B;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 2px solid #8FBC8F;
+            padding-bottom: 2px;
+            transition: 0.3s;
+            font-size: 1.05rem;
+        }
+        .news-channel-link a:hover { color: #1e3a2a; border-color: #1e3a2a; }
+
+        /* ===== CTA ===== */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(145deg, #2E4F3B 0%, #1f3828 100%);
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta::before {
+            content: '☪';
+            position: absolute;
+            right: 30px;
+            bottom: -30px;
+            font-size: 200px;
+            opacity: 0.04;
+            transform: rotate(10deg);
+        }
+        .cta h2 { font-family: 'Playfair Display', serif; font-size: 2.6rem; margin-bottom: 15px; font-weight: 400; }
+        .cta p { max-width: 600px; margin: 0 auto 30px; opacity: 0.85; font-weight: 300; }
+        .cta .btn-primary { background: #fff; color: #1e3a2a; border-color: #fff; }
+        .cta .btn-primary:hover { background: transparent; color: #fff; border-color: #fff; }
+
+        /* ===== ФУТЕР ===== */
+        .footer {
+            background: #0f1f15;
+            color: #a1b9a8;
+            padding: 40px 0 20px;
+            border-top: 2px solid #2E4F3B;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .footer h4 { color: #d4e8d4; font-family: 'Playfair Display', serif; margin-bottom: 15px; font-weight: 400; }
+        .footer p, .footer a { color: #a1b9a8; text-decoration: none; font-size: 0.95rem; line-height: 2; }
+        .footer a:hover { color: #fff; }
+        .footer-bottom { border-top: 1px solid #2a3f2f; padding-top: 20px; text-align: center; font-size: 0.85rem; color: #6d8a74; }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-text p { max-width: 100%; }
+            .hero-buttons { justify-content: center; }
+            .mission-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .section-title::after { margin-left: auto; margin-right: auto; }
+        }
+        @media (max-width: 600px) {
+            .navbar { flex-direction: column; gap: 15px; }
+            .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
+            .hero-text h1 { font-size: 2.4rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .stat-item { width: 100%; text-align: center; }
+            .price-grid { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
+            .tab-content { padding: 20px 15px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .tab-btn { padding: 10px 20px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== ШАПКА ===== -->
+    <header class="hero" id="home">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Аль-Фаджр <span>✦</span><small>Благотворительный фонд</small></div>
+                <ul class="nav-links">
+                    <li><a href="#mission">О нас</a></li>
+                    <li><a href="#directions">Программы</a></li>
+                    <li><a href="#programs">Сборы</a></li>
+                    <li><a href="#news">Новости</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Свет <em>добра</em> <br>в каждой помощи</h1>
+                    <p>Мы поддерживаем нуждающихся, вдохновляясь ценностями милосердия, взаимопомощи и веры.</p>
+                    <div class="hero-buttons">
+                        <a href="#programs" class="btn-primary">Помочь сейчас</a>
+                        <a href="#mission" class="btn-outline">О фонде</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="islamic-symbol">☪</div>
+                    <p>«Лучшие из людей — те, кто приносит пользу другим»</p>
+                    <div class="quote">— Хадис Пророка (мир ему)</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== МИССИЯ ===== -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <div class="mission-grid">
+                <div class="mission-text">
+                    <h2 class="section-title">Наша миссия</h2>
+                    <p>Фонд «Аль-Фаджр» объединяет людей вокруг идеи бескорыстной помощи. Мы верим, что каждый жест добра меняет мир к лучшему.</p>
+                    <p>Наша цель — создавать устойчивые программы поддержки для семей, детей и пожилых людей, сохраняя достоинство и уважение к каждому человеку.</p>
+                    <div class="mission-stats">
+                        <div class="stat-item"><strong>12+</strong><span>лет помощи</span></div>
+                        <div class="stat-item"><strong>4 500</strong><span>семей поддержано</span></div>
+                    </div>
+                    <div class="support-message">
+                        <strong>Ваша поддержка и участие</strong> помогут нам продолжать наше благотворительное дело и вносить значительные изменения в жизни тех, кто нуждается в помощи.
+                    </div>
+                </div>
+                <div style="background:#eef5ee; border-radius:20px; padding:20px; text-align:center; display:flex; flex-direction:column; justify-content:center;">
+                    <p style="font-size:2.5rem; font-family:'Playfair Display',serif; color:#2E4F3B;">“</p>
+                    <p style="font-size:1.2rem; color:#2c4a33; font-style:italic; line-height:1.6;">И если вы даете взаймы Аллаху хороший заем, Он возвращает вам многократно.</p>
+                    <p style="margin-top:10px; color:#5a7a63;">— Священный Коран (2:245)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== НАПРАВЛЕНИЯ (обновлённые карточки) ===== -->
+    <section class="directions" id="directions">
+        <div class="container">
+            <h2 class="section-title">Направления помощи</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">🍲</span>
+                    <h3>Горячее питание и продовольствие</h3>
+                    <p>Раздача горячей еды, хлеба, продуктовых наборов для нуждающихся семей и детей.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">💧</span>
+                    <h3>Вода и колодцы</h3>
+                    <p>Раздача питьевой воды, строительство колодцев в Африке и регионах с нехваткой воды.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">👶</span>
+                    <h3>Дети и образование</h3>
+                    <p>Кормление детей, обеспечение смесями, поддержка школ и образовательных проектов.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🕌</span>
+                    <h3>Духовная поддержка</h3>
+                    <p>Покупка мусхофов (Коранов), помощь в организации религиозных мероприятий.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🏥</span>
+                    <h3>Здравоохранение и гуманитарная помощь</h3>
+                    <p>Лекарства, палатки, одеяла, одежда, помощь в зонах бедствия (Палестина, Газа и др.).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ПРОГРАММЫ С ТАБАМИ (РАБОТАЮТ ЧЕРЕЗ JS) ===== -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <h2 class="section-title centered">Наши сборы и программы</h2>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="content1">🇵🇸 Палестина</button>
+                <button class="tab-btn" data-tab="content2">🇵🇸 Газа</button>
+                <button class="tab-btn" data-tab="content3">🌍 Африка</button>
+            </div>
+
+            <!-- Вкладка 1: Палестина -->
+            <div class="tab-content active" id="content1">
+                <h3>🇵🇸 Сбор для народа Палестины</h3>
+                <div class="bank-details">
+                    <p><span class="label">Сбербанк</span><br><span class="card-number">2202 2083 9416 8547</span></p>
+                    <p><span class="label">Т-Банк</span><br><span class="card-number">2200 7021 2656 4371</span></p>
+                    <p><span class="label">СБП (по номеру телефона)</span><br><span class="card-number">8 905 418 19 17</span> (М.З.А)</p>
+                </div>
+                <div style="text-align:center; margin:15px 0;">
+                    <span class="warning">⚠️ Переводы на эти номера не делать!</span>
+                </div>
+                <div class="contacts-line">
+                    📞 По вопросам обращаться:<br>
+                    <strong>Жен.</strong> <a href="tel:+79054499860">8 905 449 98 60</a> &nbsp;|&nbsp;
+                    <strong>Муж.</strong> <a href="tel:+89673965855">8 967 396 58 55</a>
+                </div>
+            </div>
+
+            <!-- Вкладка 2: Газа -->
+            <div class="tab-content" id="content2">
+                <h3>🇵🇸 Индивидуальные заказы в Газе (с отчётами)</h3>
+                <div class="price-grid">
+                    <div class="price-item"><strong>Раздача еды</strong><span>от 120 000 ₽</span></div>
+                    <div class="price-item"><strong>Раздача воды</strong><span>20 000 ₽</span></div>
+                    <div class="price-item"><strong>Раздача хлеба</strong><span>30 000 ₽</span></div>
+                    <div class="price-item"><strong>Палатка</strong><span>30 000 ₽</span><br><small>или 75 000 ₽</small></div>
+                    <div class="price-item"><strong>Раздача одеял</strong><span>от 80 000 ₽</span><br><small>(4 000 ₽/шт)</small></div>
+                    <div class="price-item"><strong>Раздача продуктов</strong><span>от 100 000 ₽</span><br><small>(5 000 ₽/набор)</small></div>
+                    <div class="price-item"><strong>Раздача одежды</strong><span>от 80 000 ₽</span><br><small>(4 000 ₽/комплект)</small></div>
+                    <div class="price-item"><strong>Смесь для детей</strong><span>от 60 000 ₽</span><br><small>(3 000 ₽/шт)</small></div>
+                    <div class="price-item"><strong>Раздача лекарств</strong><span>80 000 ₽</span></div>
+                </div>
+                <div class="contacts-line">
+                    📞 Для заказа обращаться:<br>
+                    <strong>Муж.</strong> <a href="tel:+89673965855">8 967 396 58 55</a> &nbsp;|&nbsp;
+                    <strong>Жен.</strong> <a href="tel:+89054499860">8 905 449 98 60</a>
+                </div>
+            </div>
+
+            <!-- Вкладка 3: Африка -->
+            <div class="tab-content" id="content3">
+                <h3>🌍 Программы в Африке</h3>
+                <div class="price-grid">
+                    <div class="price-item">
+                        <strong>🐐 Дойные козы</strong>
+                        <span>12 000 ₽</span>
+                        <small>с отчётом</small>
+                    </div>
+                    <div class="price-item">
+                        <strong>🕌 Покупка мусхофов</strong>
+                        <span>индивидуально</span>
+                        <small>(Коранов) с отчётом</small>
+                    </div>
+                    <div class="price-item">
+                        <strong>💧 Колодцы</strong>
+                        <span>по запросу</span>
+                        <small>строительство</small>
+                    </div>
+                    <div class="price-item">
+                        <strong>🍲 Раздача горячей еды</strong>
+                        <span>индивидуально</span>
+                        <small>кормление детей</small>
+                    </div>
+                </div>
+                <div class="contacts-line">
+                    📞 Для заказа и подробностей:<br>
+                    <strong>Муж.</strong> <a href="tel:+89673965855">8 967 396 58 55</a> &nbsp;|&nbsp;
+                    <strong>Жен.</strong> <a href="tel:+89054499860">8 905 449 98 60</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== НОВОСТИ ===== -->
+    <section class="news" id="news">
+        <div class="container">
+            <h2 class="section-title centered">Новости и обновления</h2>
+            <p style="text-align:center; color:#5a6f5e; max-width:600px; margin:0 auto 20px;">
+                Последние события из жизни фонда. Актуальные новости всегда в нашем Telegram-канале.
+            </p>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="date">16 мая 2026</div>
+                    <h3>Завершили сбор для многодетной семьи</h3>
+                    <p>Благодаря вашей поддержке мы собрали необходимую сумму на операцию. Семья выражает огромную благодарность.</p>
+                    <a href="#" class="read-more">Читать далее →</a>
+                </div>
+                <div class="news-card">
+                    <div class="date">10 мая 2026</div>
+                    <h3>Новый сезон продуктовой помощи</h3>
+                    <p>Стартовала летняя программа доставки продуктовых наборов для пожилых людей. Присоединяйтесь!</p>
+                    <a href="#" class="read-more">Читать далее →</a>
+                </div>
+                <div class="news-card">
+                    <div class="date">5 мая 2026</div>
+                    <h3>Благотворительный ифтар в мечети</h3>
+                    <p>Мы провели вечер разговения для нуждающихся. Спасибо всем, кто помог организовать это мероприятие.</p>
+                    <a href="#" class="read-more">Читать далее →</a>
+                </div>
+            </div>
+            <div class="news-channel-link">
+                <a href="https://t.me/fond_alfajr" target="_blank">📱 Все новости в Telegram-канале →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta">
+        <div class="container">
+            <h2>Стань частью <br>рассвета добра</h2>
+            <p>Даже небольшое пожертвование может стать причиной большой перемены в чьей-то жизни.</p>
+            <a href="#programs" class="btn-primary">Пожертвовать</a>
+        </div>
+    </section>
+
+    <!-- ===== ФУТЕР ===== -->
+    <footer class="footer" id="contacts">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Аль-Фаджр</h4>
+                    <p>Благотворительный фонд. Мы работаем на благо общества, следуя принципам прозрачности и уважения.</p>
+                    <p style="margin-top:10px;">📧 info@alfajr.foundation <br>📞 <a href="tel:+89673965855">8 967 396 58 55</a> (муж.) <br>📞 <a href="tel:+89054499860">8 905 449 98 60</a> (жен.)</p>
+                </div>
+                <div>
+                    <h4>О фонде</h4>
+                    <p><a href="#mission">Наша миссия</a></p>
+                    <p><a href="#directions">Программы</a></p>
+                    <p><a href="#news">Новости</a></p>
+                </div>
+                <div>
+                    <h4>Помощь</h4>
+                    <p><a href="#programs">Сборы</a></p>
+                    <p><a href="#contacts">Контакты</a></p>
+                    <p><a href="#home">Наверх</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Благотворительный фонд «Аль-Фаджр». Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== СКРИПТ ДЛЯ ТАБОВ ===== -->
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Убрать active у всех кнопок
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Скрыть все контенты
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+                // Показать нужный контент
+                const target = document.getElementById(this.dataset.tab);
+                if (target) target.classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
